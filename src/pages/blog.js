@@ -8,14 +8,15 @@ import * as blogStyles from "./blog.module.scss"
 export default function BlogPage() {
   const data = useStaticQuery(graphql`
     query {
-      allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
+      allMarkdownRemark {
         edges {
           node {
-            title
-            slug
-            publishedDate(formatString: "MMMM Do, YYYY")
-            body {
-              raw
+            frontmatter {
+              title
+              date
+            }
+            fields {
+              slug
             }
           }
         }
@@ -23,18 +24,35 @@ export default function BlogPage() {
     }
   `)
 
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
+  //       edges {
+  //         node {
+  //           title
+  //           slug
+  //           publishedDate(formatString: "MMMM Do, YYYY")
+  //           body {
+  //             raw
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+
   return (
     <div>
       <Layout>
         <Head title="Blog" />
         <h1>Blog</h1>
         <ol className={blogStyles.posts}>
-          {data.allContentfulBlogPost.edges.map(edge => {
+          {data.allMarkdownRemark.edges.map(edge => {
             return (
-              <li key={edge.node.title} className={blogStyles.post}>
-                <Link to={`/blog/${edge.node.slug}`}>
-                  <h2>{edge.node.title}</h2>
-                  <p>{edge.node.publishedDate}</p>
+              <li key={edge.node.frontmatter.title} className={blogStyles.post}>
+                <Link to={`/blog/${edge.node.fields.slug}`}>
+                  <h2>{edge.node.frontmatter.title}</h2>
+                  <p>{edge.node.frontmatter.date}</p>
                 </Link>
               </li>
             )
