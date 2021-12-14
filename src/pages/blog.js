@@ -24,23 +24,6 @@ export default function BlogPage() {
     }
   `)
 
-  // const data = useStaticQuery(graphql`
-  //   query {
-  //     allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
-  //       edges {
-  //         node {
-  //           title
-  //           slug
-  //           publishedDate(formatString: "MMMM Do, YYYY")
-  //           body {
-  //             raw
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-
   return (
     <div>
       <Layout>

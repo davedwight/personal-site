@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { renderRichText } from "gatsby-source-contentful/rich-text"
 
 import Layout from "../components/layout"
 import Head from "../components/head"
