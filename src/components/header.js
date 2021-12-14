@@ -44,9 +44,9 @@ export default function Header() {
             <Link
               className={headerStyles.navItem}
               activeClassName={headerStyles.activeNavItem}
-              to="/about"
+              to="/work"
             >
-              About
+              Work
             </Link>
           </li>
           <li>
